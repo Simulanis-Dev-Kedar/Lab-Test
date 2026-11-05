@@ -6,13 +6,13 @@ hosts:
     flavor: standard.small
     base_box:
       image: wazuh-dashboard-ci
-      mgmt_user: ubuntu
+      mgmt_user: ubuntu1
 
   - name: wazuh-vm-2
     flavor: standard.small
     base_box:
       image: wazuh-dashboard-ci
-      mgmt_user: ubuntu
+      mgmt_user: ubuntu2
 
 routers:
   - name: debian-router
