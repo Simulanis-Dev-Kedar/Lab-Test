@@ -1,15 +1,14 @@
-
 name: my-first-sandbox
 
 hosts:
   - name: wazuh-vm-1
-    flavor: standard.small
+    flavor: standard.medium
     base_box:
       image: wazuh-dashboard-ci
       mgmt_user: ubuntu
 
   - name: wazuh-vm-2
-    flavor: standard.small
+    flavor: standard.medium
     base_box:
       image: wazuh-dashboard-ci
       mgmt_user: ubuntu
@@ -20,23 +19,3 @@ routers:
     base_box:
       image: debian-12-x86_64
       mgmt_user: ubuntu
-
-networks:
-  - name: internal-network
-    cidr: 10.10.20.0/24
-
-net_mappings:
-  - host: wazuh-vm-1
-    network: internal-network
-    ip: 10.10.20.10
-
-  - host: wazuh-vm-2
-    network: internal-network
-    ip: 10.10.20.11
-
-router_mappings:
-  - router: debian-router
-    network: internal-network
-    ip: 10.10.20.1
-
-groups: []
