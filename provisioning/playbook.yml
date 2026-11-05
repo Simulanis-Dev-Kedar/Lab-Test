@@ -1,1 +1,12 @@
 
+---
+- name: Basic sandbox test
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create a test file
+      ansible.builtin.copy:
+        content: "CyberRangeCZ Ansible provisioning successful!"
+        dest: /tmp/test.txt
+        mode: "0644"
