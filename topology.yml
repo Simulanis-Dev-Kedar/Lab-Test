@@ -1,21 +1,52 @@
-name: my-first-sandbox
+
+# Two-node sandbox
+name: Sandbox-1
 
 hosts:
-  - name: wazuh-vm-1
-    flavor: wazuh.indexer
+  - name: Red-Team
     base_box:
-      image: wazuh-dashboard-ci
-      mgmt_user: ubuntu
+      image: ubuntu-noble-x86_64
+      mgmt_user: ubuntu-red
+    flavor: standard.medium
 
-  - name: wazuh-vm-2
-    flavor: wazuh.indexer
-    base_box:
-      image: wazuh-dashboard-ci
-      mgmt_user: ubuntu
-
-routers:
-  - name: debian-router
-    flavor: standard.small
+  - name: Blue-Team
     base_box:
       image: debian-12-x86_64
-      mgmt_user: ubuntu
+      mgmt_user: ubuntu-blue
+    flavor: standard.medium
+
+routers:
+  - name: edge
+    base_box:
+      image: debian-12-x86_64
+      mgmt_user: debian
+    flavor: standard.small
+
+wan:
+  name: wan
+  cidr: 100.64.0.0/24
+
+networks:
+  - name: lan
+    cidr: 10.10.1.0/24
+
+net_mappings:
+  - host: Red-Team
+    network: lan
+    ip: 10.10.1.10
+
+  - host: Blue-Team
+    network: lan
+    ip: 10.10.1.11
+
+router_mappings:
+  - router: edge
+    network: lan
+    ip: 10.10.1.1
+
+groups:
+  - name: Red-Team
+    nodes: [Red-Team]
+
+  - name: Blue-Team
+    nodes: [Blue-Team]
