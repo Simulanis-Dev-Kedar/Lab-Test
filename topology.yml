@@ -2,13 +2,13 @@ name: my-first-sandbox
 
 hosts:
   - name: wazuh-vm-1
-    flavor: standard.medium
+    flavor: wazuh.indexer
     base_box:
       image: wazuh-dashboard-ci
       mgmt_user: ubuntu
 
   - name: wazuh-vm-2
-    flavor: standard.medium
+    flavor: wazuh.indexer
     base_box:
       image: wazuh-dashboard-ci
       mgmt_user: ubuntu
